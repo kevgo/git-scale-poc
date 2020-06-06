@@ -51,6 +51,8 @@ sparse checkout:
 git sparse-checkout init --cone
 ```
 
+### Adding a folder
+
 Let's say we want to work on the documentation for the Telemetry feature. Let's
 add that folder:
 
@@ -69,6 +71,8 @@ git pull
 ```
 
 This takes just a few seconds.
+
+More information: https://docs.gitlab.com/ee/topics/git/partial_clone.html
 
 ### Building with Bazel
 
