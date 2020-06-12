@@ -23,7 +23,7 @@ promisor remotes.
 Clone only the metadata, branches, and the files in the root directory:
 
 ```
-git clone --filter=blob:none --sparse git@gitlab.com:gitlab-com/www-gitlab-com.git
+git clone --filter=blob:none --sparse git@gitlab.com:gitlab-org/gitlab.git
 ```
 
 Explore the repo:
