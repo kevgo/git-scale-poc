@@ -50,5 +50,36 @@ bazel build //main:hello-world
 
 ### TypeScript library
 
-- Angular app
-- Python app
+Compile the Angular codebase located in [angular](angular):
+
+```
+cd angular
+```
+
+Compile a particular TypeScript library:
+
+```
+bazel build packages/core
+```
+
+Notice how this runs several compile steps in parallel, fully utilizing your
+CPU. If you run `bazel build packages/core` again, the results are instantaneous
+because no source code has been changed, so Bazel reuses the results from the
+last run of the compiler.
+
+Test a particular TypeScript library:
+
+```
+bazel test packages/core/test:test
+```
+
+Compile everything (you need at least 16 GB RAM for this):
+
+```
+bazel build packages/...
+```
+
+You are compiling a LOT of code: protocol buffers, C-extensions for NPM modules,
+TypeScript transpilers, JavaScript minifiers, etc.
+
+More info at https://github.com/angular/angular/blob/master/docs/BAZEL.md
