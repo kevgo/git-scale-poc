@@ -48,7 +48,7 @@ Compile the CLI app including all its dependencies:
 bazel build //main:hello-world
 ```
 
-### TypeScript library
+### TypeScript mono-repo
 
 Compile the Angular codebase located in [angular](angular):
 
@@ -79,7 +79,15 @@ Compile everything (you need at least 16 GB RAM for this):
 bazel build packages/...
 ```
 
-You are compiling a LOT of code: protocol buffers, C-extensions for NPM modules,
-TypeScript transpilers, JavaScript minifiers, etc.
+You are compiling a tens of thousands of code bases: protocol buffers,
+C-extensions for NPM modules, TypeScript transpilers, JavaScript minifiers, etc.
 
 More info at https://github.com/angular/angular/blob/master/docs/BAZEL.md
+
+### TypeScript library
+
+follow this:
+
+- https://dataform.co/blog/typescript-monorepo-with-bazel
+- https://blog.mgechev.com/2018/11/19/introduction-bazel-typescript-tutorial/
+- https://github.com/alexeagle/ts-from-bazel
