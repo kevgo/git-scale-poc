@@ -44,7 +44,7 @@ Running `git status` after making changes to a few files is instantaneous.
 ### Pulling updates
 
 After a day or two, there have been a lot of updates to the `master` branch.
-Pull down updates takes no more than **20 seconds**:
+Pulling down updates takes no more than **20 seconds**:
 
 ```
 git pull
