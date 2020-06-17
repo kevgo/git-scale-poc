@@ -16,6 +16,7 @@ Merging in the Linux kernel while preserving history:
 ```
 git remote add linux ../linux
 git fetch linux --tags
+```
 
 ### Sparse checkouts
 
