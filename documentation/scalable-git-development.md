@@ -11,7 +11,7 @@ To run these experiments, you need Git version 2.26 or later.
 
 ### Sparse checkouts
 
-A complete clone of all 1.2 GB and 33,000 files takes around **4 minutes**. 
+A complete clone of all 1.2 GB and 33,000 files in the GitLab codebase takes around **4 minutes**. 
 
 Utilizing
 [Sparse checkouts](https://git-scm.com/docs/git-sparse-checkout) and
