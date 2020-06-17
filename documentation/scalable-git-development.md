@@ -9,6 +9,14 @@ from 9 years.
 
 To run these experiments, you need Git version 2.26 or later.
 
+### preparing the experimental repo
+
+Merging in the Linux kernel while preserving history:
+
+```
+git remote add linux ../linux
+git fetch linux --tags
+
 ### Sparse checkouts
 
 A complete clone of all 1.2 GB and 33,000 files in the GitLab codebase takes around **4 minutes**. 
