@@ -54,8 +54,8 @@ More information at https://docs.gitlab.com/ee/topics/git/partial_clone.html
 
 ### Code search
 
-Git comes with capable built-in full-text search capabilities. 
-It finds all occurrences of the word `banana` in the entire 1.2 GB and 33,000 files in only **400 milliseconds**:
+Git comes with built-in full-text search capabilities. 
+It finds 96 occurrences of the word `banana` in the entire 1.2 GB and 33,000 files of the GitLab codebase in only **400 milliseconds**:
 
 ```
 time git grep banana
