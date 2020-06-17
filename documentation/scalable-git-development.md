@@ -1,81 +1,63 @@
-# Scalable Git for developers
+# Git Scalability Experiments
 
-This experiment examines modern Git features for large code bases using the
-[GitLab codebase](https://gitlab.com/gitlab-org/gitlab) as an example. Over 4000
-developers contribute to this public monorepo, creating up to a few hundred
+This experiment examines modern Git features for large code bases. 
+As a reference point we use the
+[GitLab codebase](https://gitlab.com/gitlab-org/gitlab). Over 4000
+developers contribute to this public monorepo, creating up to several hundred
 commits per day. It contains 1.2 GB of content, 33,000 files, 177,000 commits
-from 9 years, and in total takes around 4 minutes to clone. Utilizing
+from 9 years.
+
+To run these experiments, you need Git version 2.26 or later.
+
+### Sparse checkouts
+
+A complete clone of all 1.2 GB and 33,000 files takes around **4 minutes**. 
+
+Utilizing
 [Sparse checkouts](https://git-scm.com/docs/git-sparse-checkout) and
 [partial clones](https://docs.gitlab.com/ee/topics/git/partial_clone.html), the
-initial clone of the repo can be reduced to 58 files and 300 MB of payload,
-which downloads in about a minute. The user can add files and directories needed
-for development one by one, their content will be lazy-loaded from the
-repository. In the future, there will be support to stream content from multiple
-promisor remotes.
-
-### Requirements
-
-- Git version 2.26 or later
-- a computer with at least 8, ideally 16 GB RAM
-
-### Initial clone
-
-Clone only the metadata, branches, and the files in the root directory:
+initial clone of the repo can be reduced to a payload of **58 files** and **300 MB**,
+which downloads in about **one minute**. 
 
 ```
 git clone --filter=blob:none --sparse git@gitlab.com:gitlab-org/gitlab.git
 ```
 
-Explore the repo:
+The user can then add files and directories needed for development one by one, 
+their content will be lazy-loaded from the repository. 
+In the future, there will be support to stream content from multiple promisor remotes.
 
-```
-cd gitlab
-```
-
-This folder contains only the files in the home directory. Let's initialize the
-cone pattern set for reasonable behavior and better performance:
+Initialize the "cone" strategy for partial clones:
 
 ```
 git sparse-checkout init --cone
 ```
 
-### Adding a folder
-
-Add a particular subfolder we want to work on, in this case the documentation
-folder for the Telemetry feature:
+Adding a folder and downloading its content takes only a few seconds:
 
 ```
 git sparse-checkout add doc/development/telemetry
 ```
 
-This took just a few seconds. Now we get all the files in the folder
-`doc/development/telemetry` and all its parent folders.
+### Making changes 
 
-You can open `doc/development/telemetry/index.md` and make some changes. Save
-them and run `git status`. You see 1 changed file. The operation is
-instantaneous. Let's get updates:
+Running `git status` after making changes to a few files is instantaneous.
+
+### Pulling updates
+
+After a day or two, there have been a lot of updates to the `master` branch.
+Pull down updates takes no more than **20 seconds**:
 
 ```
 git pull
 ```
 
-This takes just a few seconds.
-
-More information: https://docs.gitlab.com/ee/topics/git/partial_clone.html
+More information at https://docs.gitlab.com/ee/topics/git/partial_clone.html
 
 ### Code search
 
-A full-text search for `potato` using [RipGrep](https://github.com/BurntSushi/ripgrep) on Linux takes 700 milliseconds:
-
-```
-time rg potato
-
-(7 results)
-
-Executed in 785 millis
-```
-
-A full-text search for `banana` using `git grep` on Linux takes only 400 milliseconds:
+Git comes with capable built-in full-text search capabilities. 
+It finds all occurrences of the word `banana` in the entire 1.2 GB and 33,000 files in only **400 milliseconds**:
 
 ```
 time git grep banana
@@ -85,8 +67,19 @@ time git grep banana
 Executed in 464 millis
 ```
 
-- full-text search for `potato` using VSCode: 1 second
-- full-text search for `banana` using VSCode: 1.5 seconds
+A more capable full-text search tool is [RipGrep](https://github.com/BurntSushi/ripgrep). 
+It finds all occurrences of the word `potato` in **700 milliseconds**:
+
+```
+time rg potato
+
+(7 results)
+
+Executed in 785 millis
+```
+
+[VSCode](https://code.visualstudio.com) is an IDE written in JavaScript. 
+It finds all 103 occurrences of the word `banana` in 1.5 seconds.
 
 ### Gathering statistics
 
