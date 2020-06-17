@@ -25,15 +25,13 @@ git clone --filter=blob:none --sparse git@gitlab.com:gitlab-org/gitlab.git
 
 The user can then add files and directories needed for development one by one, 
 their content will be lazy-loaded from the repository. 
-In the future, there will be support to stream content from multiple promisor remotes.
-
 Initialize the "cone" strategy for partial clones:
 
 ```
 git sparse-checkout init --cone
 ```
 
-Adding a folder and downloading its content takes only a few seconds:
+Add a folder and downloading its content takes only **a few seconds**:
 
 ```
 git sparse-checkout add doc/development/telemetry
