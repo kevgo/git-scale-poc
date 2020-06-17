@@ -63,6 +63,28 @@ This takes just a few seconds.
 
 More information: https://docs.gitlab.com/ee/topics/git/partial_clone.html
 
+### Code search
+
+A full-text search for `potato` using [RipGrep](https://github.com/BurntSushi/ripgrep) on Linux takes 700 milliseconds:
+
+```
+time rg potato
+
+(7 results)
+
+Executed in 785 millis
+```
+
+A full-text search for `banana` using `git grep` on Linux takes only 400 milliseconds:
+
+```
+time git grep banana
+
+(96 results)
+
+Executed in 464 millis
+```
+
 ### Gathering statistics
 
 This experiment used the following methods to gather statistics.
