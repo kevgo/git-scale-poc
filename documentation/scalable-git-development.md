@@ -85,6 +85,9 @@ time git grep banana
 Executed in 464 millis
 ```
 
+- full-text search for `potato` using VSCode: 1 second
+- full-text search for `banana` using VSCode: 1.5 seconds
+
 ### Gathering statistics
 
 This experiment used the following methods to gather statistics.
