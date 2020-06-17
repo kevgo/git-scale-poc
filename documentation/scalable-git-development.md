@@ -43,12 +43,9 @@ Running `git status` after making changes to a few files is instantaneous.
 
 ### Pulling updates
 
-After a day or two, there have been a lot of updates to the `master` branch.
-Pulling down updates takes no more than **20 seconds**:
+- pulling down thousands of updates after a week of Gitlab development: **20 seconds**
+- pulling down several weeks of updates (50 MB in total) for the Linux kernel: **50 seconds**
 
-```
-git pull
-```
 
 More information at https://docs.gitlab.com/ee/topics/git/partial_clone.html
 
